@@ -28,6 +28,8 @@ import org.opensearch.sql.protocol.response.QueryResult;
 public class RawResponseFormatterTest {
   private FlatResponseFormatter rawFormater = new RawResponseFormatter();
 
+  private String newLineChar = System.lineSeparator();
+
   @Test
   void formatResponse() {
     ExecutionEngine.Schema schema = new ExecutionEngine.Schema(ImmutableList.of(
@@ -104,8 +106,8 @@ public class RawResponseFormatterTest {
     QueryResult response = new QueryResult(schema, Arrays.asList(
             tupleValue(ImmutableMap.of("city", "=Seattle")),
             tupleValue(ImmutableMap.of("city", "||Seattle"))));
-    String expected = "city\n"
-            + "=Seattle\n"
+    String expected = "city" + newLineChar
+            + "=Seattle" + newLineChar
             + "\"||Seattle\"";
     assertEquals(expected, escapeFormatter.format(response));
   }
