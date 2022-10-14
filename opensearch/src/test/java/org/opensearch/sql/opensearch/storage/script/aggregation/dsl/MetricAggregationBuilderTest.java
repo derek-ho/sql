@@ -19,10 +19,14 @@ import static org.opensearch.sql.expression.aggregation.StdDevAggregator.stddevS
 import static org.opensearch.sql.expression.aggregation.VarianceAggregator.variancePopulation;
 import static org.opensearch.sql.expression.aggregation.VarianceAggregator.varianceSample;
 
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -320,6 +324,9 @@ class MetricAggregationBuilderTest {
   @SneakyThrows
   private String buildQuery(List<NamedAggregator> namedAggregatorList) {
     ObjectMapper objectMapper = new ObjectMapper();
+    DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+    prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+    objectMapper.setDefaultPrettyPrinter(prettyPrinter);
     return objectMapper.readTree(
         aggregationBuilder.build(namedAggregatorList).getLeft().toString())
         .toPrettyString();
