@@ -35,7 +35,7 @@ jobs:
     steps:
     - name: Change line endings for windows
       if: ${{ matrix.os == 'windows-latest' }}
-      run: git config --global core.autocrlf false
+      run: git config --global core.autocrlf input
     - uses: actions/checkout@v3
     
     - name: Set up JDK ${{ matrix.java }}
