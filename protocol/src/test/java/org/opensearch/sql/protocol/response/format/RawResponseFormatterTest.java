@@ -29,8 +29,6 @@ import org.opensearch.sql.protocol.response.QueryResult;
 public class RawResponseFormatterTest {
   private FlatResponseFormatter rawFormater = new RawResponseFormatter();
 
-  private String newLineChar = System.lineSeparator();
-
   @Test
   void formatResponse() {
     ExecutionEngine.Schema schema = new ExecutionEngine.Schema(ImmutableList.of(
