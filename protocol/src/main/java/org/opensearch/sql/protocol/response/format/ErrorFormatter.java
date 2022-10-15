@@ -43,16 +43,22 @@ public class ErrorFormatter {
     return prettyJsonify(error);
   }
 
+  /**
+   * Util method to format {@link Throwable} response to JSON string in pretty printing.
+   */
   public static String compactJsonify(Object jsonObject) {
     return AccessController.doPrivileged(
         (PrivilegedAction<String>) () -> GSON.toJson(jsonObject)
-                .replace("\\n", System.lineSeparator()));
+                .replace("\\\n", System.lineSeparator()));
   }
 
+  /**
+   * Util method to format {@link Throwable} response to JSON string in pretty printing.
+   */
   public static String prettyJsonify(Object jsonObject) {
     return AccessController.doPrivileged(
         (PrivilegedAction<String>) () -> PRETTY_PRINT_GSON.toJson(jsonObject)
-                .replace("\\n", System.lineSeparator()));
+                .replace("\\\n", System.lineSeparator()));
   }
 
   @RequiredArgsConstructor

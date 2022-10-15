@@ -7,6 +7,7 @@
 package org.opensearch.sql.protocol.response.format;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.opensearch.sql.common.utils.StringUtils.format;
 import static org.opensearch.sql.data.model.ExprValueUtils.LITERAL_MISSING;
 import static org.opensearch.sql.data.model.ExprValueUtils.LITERAL_NULL;
 import static org.opensearch.sql.data.model.ExprValueUtils.stringValue;
@@ -147,18 +148,18 @@ class JdbcResponseFormatterTest {
 
   @Test
   void format_server_error_response_due_to_opensearch() {
-    assertJsonEquals(
+    assertJsonEquals(format(
         "{\"error\":"
             + "{\""
             + "type\":\"OpenSearchException\","
             + "\"reason\":\"Error occurred in OpenSearch engine: all shards failed\","
             + "\"details\":\"OpenSearchException[all shards failed]; "
             + "nested: IllegalStateException[Execution error];; "
-            + "java.lang.IllegalStateException: Execution error\\n"
+            + "java.lang.IllegalStateException: Execution error%n"
             + "For more details, please send request for Json format to see the raw response "
             + "from OpenSearch engine.\""
             + "},"
-            + "\"status\":503}",
+            + "\"status\":503}"),
         formatter.format(new OpenSearchException("all shards failed",
             new IllegalStateException("Execution error")))
     );

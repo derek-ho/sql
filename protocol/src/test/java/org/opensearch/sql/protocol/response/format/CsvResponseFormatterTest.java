@@ -95,6 +95,8 @@ public class CsvResponseFormatterTest {
     Throwable t = new RuntimeException("This is an exception");
     String expected =
         "{%n  \"type\": \"RuntimeException\",%n  \"reason\": \"This is an exception\"%n}";
+    String awesome = format(expected);
+    String awe = formatter.format(t);
     assertEquals(format(expected), formatter.format(t));
   }
 
