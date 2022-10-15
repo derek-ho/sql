@@ -18,6 +18,8 @@ import static org.opensearch.sql.data.type.ExprCoreType.STRING;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.Arrays;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.junit.jupiter.api.Test;
 import org.opensearch.sql.data.model.ExprTupleValue;
 import org.opensearch.sql.executor.ExecutionEngine;
@@ -97,6 +99,10 @@ public class CsvResponseFormatterTest {
         "{%n  \"type\": \"RuntimeException\",%n  \"reason\": \"This is an exception\"%n}";
     String awesome = format(expected);
     String awe = formatter.format(t);
+    System.out.println("expected" + StringEscapeUtils.escapeJava(awesome));
+    System.out.println("actual" + StringEscapeUtils.escapeJava(awe));
+
+
     assertEquals(format(expected), formatter.format(t));
   }
 
