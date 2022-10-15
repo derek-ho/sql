@@ -107,9 +107,9 @@ public class RawResponseFormatterTest {
     QueryResult response = new QueryResult(schema, Arrays.asList(
             tupleValue(ImmutableMap.of("city", "=Seattle")),
             tupleValue(ImmutableMap.of("city", "||Seattle"))));
-    String expected = "city%n" +
-            "=Seattle%n" +
-            "\"||Seattle\"";
+    String expected = "city%n"
+            + "=Seattle%n"
+            + "\"||Seattle\"";
     assertEquals(format(expected), escapeFormatter.format(response));
   }
 
