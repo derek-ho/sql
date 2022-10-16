@@ -147,7 +147,7 @@ class JdbcResponseFormatterTest {
 
   @Test
   void format_server_error_response_due_to_opensearch() {
-    assertEquals(
+    assertJsonEquals(
         "{\"error\":"
             + "{\""
             + "type\":\"OpenSearchException\","
