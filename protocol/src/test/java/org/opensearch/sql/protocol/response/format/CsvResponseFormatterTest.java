@@ -18,7 +18,6 @@ import static org.opensearch.sql.data.type.ExprCoreType.STRING;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 import org.opensearch.sql.data.model.ExprTupleValue;
 import org.opensearch.sql.executor.ExecutionEngine;
