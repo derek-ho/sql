@@ -155,7 +155,7 @@ class JdbcResponseFormatterTest {
             + "\"reason\":\"Error occurred in OpenSearch engine: all shards failed\","
             + "\"details\":\"OpenSearchException[all shards failed]; "
             + "nested: IllegalStateException[Execution error];; "
-            + "java.lang.IllegalStateException: Execution error%n"
+            + "java.lang.IllegalStateException: Execution error%n "
             + "For more details, please send request for Json format to see the raw response "
             + "from OpenSearch engine.\""
             + "},"
