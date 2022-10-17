@@ -8,7 +8,6 @@ package org.opensearch.sql.legacy.unittest.utils;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.opensearch.sql.common.utils.StringUtils.format;
 
 import com.google.common.io.Files;
 import java.io.File;
@@ -32,11 +31,11 @@ public class PrettyFormatterTest {
     public void assertFormatterOutputsPrettyJson() throws IOException {
         String explainFormattedPrettyFilePath = TestUtils.getResourceFilePath(
                 "/src/test/resources/expectedOutput/explain_format_pretty.json");
-        String explainFormattedPretty = Files.toString(new File(explainFormattedPrettyFilePath), StandardCharsets.UTF_8);
+        String explainFormattedPretty = Files.asCharSource(new File(explainFormattedPrettyFilePath), StandardCharsets.UTF_8).read();
 
         String explainFormattedOnelineFilePath = TestUtils.getResourceFilePath(
                 "/src/test/resources/explain_format_oneline.json");
-        String explainFormattedOneline = Files.toString(new File(explainFormattedOnelineFilePath), StandardCharsets.UTF_8);
+        String explainFormattedOneline = Files.asCharSource(new File(explainFormattedOnelineFilePath), StandardCharsets.UTF_8).read();
         String result = JsonPrettyFormatter.format(explainFormattedOneline);
 
         assertThat(result, equalTo(explainFormattedPretty));
