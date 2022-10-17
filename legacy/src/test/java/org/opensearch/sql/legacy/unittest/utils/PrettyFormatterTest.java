@@ -39,7 +39,7 @@ public class PrettyFormatterTest {
         String explainFormattedOneline = Files.toString(new File(explainFormattedOnelineFilePath), StandardCharsets.UTF_8);
         String result = JsonPrettyFormatter.format(explainFormattedOneline);
 
-        assertThat(result, equalTo(format(explainFormattedPretty)));
+        assertThat(result, equalTo(explainFormattedPretty));
     }
 
     @Test(expected = IOException.class)
