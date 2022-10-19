@@ -55,6 +55,7 @@ jobs:
       if: ${{ matrix.entry.os == 'ubuntu-latest' }}
       run: ./scripts/bwctest.sh
 
+
     - name: Create Artifact Path
       run: |
         mkdir -p opensearch-sql-builds
