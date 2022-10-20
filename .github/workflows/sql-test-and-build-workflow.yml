@@ -20,7 +20,7 @@ on:
 jobs:
   build:
     env:
-      BUILD_ARGS: ${{ matrix.os_build_args }}
+      BUILD_ARGS: ${{ matrix.entry.os_build_args }}
     strategy:
       # Run all jobs
       fail-fast: false
@@ -37,7 +37,7 @@ jobs:
             os_build_args: -x doctest -x integTest -x jacocoTestReport -x compileJdbc
           - os: macos-latest
             os_build_args: -x doctest -x integTest -x jacocoTestReport -x compileJdbc
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.entry.os }}
 
     steps:
     - uses: actions/checkout@v3
@@ -54,7 +54,6 @@ jobs:
     - name: Run backward compatibility tests
       if: ${{ matrix.entry.os == 'ubuntu-latest' }}
       run: ./scripts/bwctest.sh
-
 
     - name: Create Artifact Path
       run: |
