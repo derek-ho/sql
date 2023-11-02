@@ -6,6 +6,7 @@ import static org.opensearch.sql.datasources.utils.XContentParserUtils.*;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -96,5 +97,13 @@ public class TransportPatchDataSourceActionTest {
             Map.of(NAME_FIELD, "test", PROPERTIES_FIELD, Map.of("glue.auth.role_arn", "test_arn")));
     assertNotNull(request.validate());
     assertTrue(request.validate().getMessage().contains("Not allowed to update role_arn"));
+  }
+
+  @Test
+  public void testValidateSucceedsWhenPatchingAllowedRoles() {
+    PatchDataSourceActionRequest request =
+            new PatchDataSourceActionRequest(
+                    Map.of(NAME_FIELD, "test", ALLOWED_ROLES_FIELD, List.of("all_access")));
+    assertNull(request.validate());
   }
 }
